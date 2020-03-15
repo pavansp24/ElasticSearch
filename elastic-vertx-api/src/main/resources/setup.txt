@@ -1,0 +1,43 @@
+
+Step:1
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+
+Step:2
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+
+Step:3
+docker pull docker.elastic.co/kibana/kibana:7.6.1
+
+Step:4
+docker run --link nervous_ardinghelli:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.6.1
+
+Step:5
+Browse below URL to validate the elastic search container is up and running
+http://localhost:9200/
+
+Confirm below response in the browser
+{
+  "name" : "93b7de99150f",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "v4R3LsYNQOSJKOpXMMWTLQ",
+  "version" : {
+    "number" : "7.6.1",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "aa751e09be0a5072e8570670309b1f12348f023b",
+    "build_date" : "2020-02-29T00:15:25.529771Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.4.0",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+Step:6
+
+Browse below URL to validate the kibana container is up and running
+
+http://localhost:5601
+
+Kibana Dashboard will be displayed.
